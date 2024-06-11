@@ -23,6 +23,12 @@ See `input.toml` in the root dir for an example input file.
 
 If `<enable-display>` is set to 1, graphical mode is enabled and a GLFW window will launch showing the user's specified scene. This is useful for debugging. In graphical mode, use the mouse and WASD to move around the scene and spacebar to pause and unpause the simulation.
 
+## Docs
+To run the docs, install Doxygen [here](https://doxygen.nl/)
+Then, run `doxygen dconfig` in the project root directory. This will read the files from 
+src/ in dconfig and generate documentation. Basic doxygen comment is `//! comment`, which indicates
+to doxygen that the comment is tied to the line of code below.
+
 ## TODO
 - Test installation on cluster
 - Documentation

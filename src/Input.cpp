@@ -12,18 +12,22 @@
 namespace fs = std::filesystem;
 
 template<typename T>
+
+// Read toml input file table entry 
+// REQUIRES: toml table file and input name
+// EFFECTS: Returns parsed value
 T read_table_entry_as (toml::table &table, const std::string &input_name) {
   auto node = table[input_name];
   bool valid = true;
   T value{};
 
-  if constexpr (std::is_same_v<T, string>) {
+  if constexpr (std::is_same_v<T, string>) {            // String check
     if (node.is_string()) {
       value = node.as_string()->get();
     } else {
       valid = false;
     }
-  } else if constexpr (std::is_same_v<T, glm::vec3>) {
+  } else if constexpr (std::is_same_v<T, glm::vec3>) {  // Nested Table check
     if (node.is_table()) {
       auto tab = node.as_table();
       auto x = read_table_entry_as<float>(*tab, "x");
@@ -33,7 +37,7 @@ T read_table_entry_as (toml::table &table, const std::string &input_name) {
     } else {
       valid = false;
     }
-  } else {
+  } else {                                              // Literal types check
     if (node.is_integer()) {
       value = static_cast<T>(node.as_integer()->get());
     } else if (node.is_boolean()) {
@@ -56,6 +60,9 @@ T read_table_entry_as (toml::table &table, const std::string &input_name) {
   return value;
 }
 
+// Retrieve toml input file table according to param name 
+// REQUIRES: toml table and input file name
+// EFFECTS: Returns toml table
 toml::table get_table (toml::table input, const std::string &name) {
   if (input.contains(name)) {
     return *input.get_as<toml::table>(name);

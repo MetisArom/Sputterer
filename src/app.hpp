@@ -4,7 +4,7 @@
 #include "Camera.hpp"
 
 namespace app {
-// settings
+  // settings
   constexpr unsigned int screen_width = 1360;
   constexpr unsigned int screen_height = 768;
   float aspect_ratio = static_cast<float>(screen_width)/static_cast<float>(screen_height);
@@ -15,6 +15,7 @@ namespace app {
   float last_x = 0.0;
   float last_y = 0.0;
 
+  //! Function for processing key inputs to window
   void process_input (GLFWwindow *window) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
       glfwSetWindowShouldClose(window, true);

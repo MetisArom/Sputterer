@@ -5,7 +5,7 @@
 #include "../include/cuda_helpers.cuh"
 
 namespace cuda {
-
+  //! Class Definition for Event type objects
   class Event {
   public:
     Event () {
@@ -24,6 +24,10 @@ namespace cuda {
     cudaEvent_t m_event{};
   };
 
+  //! Function for computing time elapsed between events
+  //! REQUIRES: Two event references
+  //! MODIFIES: float elpased using the cudaEventElapsedTime function
+  //! EFFECTS: Returns the computed elapsed time
   float event_elapsed_time (const Event &e1, const Event &e2);
 
 } // namespace cuda

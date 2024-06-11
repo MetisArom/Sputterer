@@ -6,6 +6,7 @@
 #include "Mesh.hpp"
 #include "gl_helpers.hpp"
 
+// Output stream overloads for Mesh.hpp structs
 std::ostream &operator<< (std::ostream &os, const Vertex &v) {
   os << "{ pos: " << v.pos << ", norm: " << v.norm << "}";
   return os;
@@ -30,6 +31,7 @@ std::ostream &operator<< (std::ostream &os, const Mesh &m) {
   return os;
 }
 
+// Helper function for processing obj file delimiters
 vector<string> split (const string &s, char delim);
 
 void Mesh::read_from_obj (const string &path) {

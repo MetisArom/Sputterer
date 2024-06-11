@@ -8,12 +8,13 @@
 #include "gl_helpers.hpp"
 #include "Constants.hpp"
 
-// Setup RNG
+//! Setup RNG for randomizing particles
 __global__ void k_setup_rng (curandState *rng, uint64_t seed) {
   unsigned int tid = threadIdx.x + blockIdx.x*blockDim.x;
   curand_init(seed, tid, 0, &rng[tid]);
 }
 
+//! Constructor for ParticleContainer
 ParticleContainer::ParticleContainer (string name, size_t num, double mass, int charge)
   : name(std::move(name)), mass(mass), charge(charge) {
 
